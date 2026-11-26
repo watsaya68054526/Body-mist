@@ -1,0 +1,470 @@
+/* ==========================================================================
+   Body Scent — Premium Minimal Theme
+   โทน: ขาว-ครีม-เบจเข้ม | accent: ทอง/บรอนซ์อ่อน | serif + sans
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Thai:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500&display=swap");
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* พื้นหลัง */
+  --white:        #ffffff;
+  --ivory:        #fdfbf7;
+  --cream:        #f6f1e7;
+  --sand:         #e9dfcd;
+  --beige-deep:   #b9a88a;
+
+  /* ตัวอักษร / เส้น */
+  --ink:          #2b2622;   /* น้ำตาลเข้มนุ่ม ไม่ดำสนิท */
+  --ink-soft:     #5e554b;
+  --ink-mute:     #8a7f72;
+  --line:         #d9ceba;   /* เส้นบางๆ */
+  --line-strong:  #8a7a64;
+
+  /* Accent ทอง/บรอนซ์อ่อน */
+  --gold:         #a98a52;
+  --gold-deep:    #8a6f3e;
+  --gold-soft:    #d8c498;
+
+  /* สี mood (ใช้แตะเบาๆ เป็นจุด/เส้นเล็กเท่านั้น) */
+  --mood-fresh:     #2f5d46;  /* เขียวเข้ม */
+  --mood-sweet:     #7a5a96;  /* ม่วงกลาง */
+  --mood-confident: #3c4d5e;  /* น้ำเงินเทาเข้ม */
+  --mood-romance:   #b86a6a;  /* แดงอ่อน */
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", Georgia, "Times New Roman", serif;
+  --font-serif-th: "Noto Serif Thai", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Noto Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  --fs-xs:   0.8125rem;
+  --fs-sm:   0.9375rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   1.5rem;
+  --fs-xl:   clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  --fs-2xl:  clamp(2.25rem, 1.4rem + 4vw, 4rem);
+
+  /* Spacing (โปร่ง ไม่แน่น) */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2.5rem;
+  --sp-5: 4rem;
+  --sp-6: 6rem;
+  --sp-7: 9rem;
+
+  --container: 1120px;
+  --radius: 2px;              /* มุมเกือบเหลี่ยม ดูเรียบหรู */
+  --ease: cubic-bezier(.25, .6, .3, 1);
+}
+
+/* ---------- 2. Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 300;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .3s var(--ease);
+}
+a:hover { color: var(--gold-deep); }
+
+h1, h2, h3, h4 {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+h1 { font-size: var(--fs-2xl); font-weight: 400; line-height: 1.2; }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+h4 { font-size: var(--fs-md); }
+
+p { margin: 0 0 var(--sp-3); color: var(--ink-soft); max-width: 62ch; }
+
+:focus-visible {
+  outline: 1px solid var(--gold-deep);
+  outline-offset: 4px;
+}
+
+::selection { background: var(--gold-soft); color: var(--ink); }
+
+/* ---------- 3. Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--sp-3);
+}
+
+.section { padding-block: var(--sp-6); }
+.section--cream { background: var(--cream); }
+.section--sand  { background: var(--sand); }
+
+.section__head {
+  text-align: center;
+  margin-bottom: var(--sp-5);
+}
+.section__head p { margin-inline: auto; }
+
+/* เส้นทองบางๆ ใต้หัวข้อ */
+.rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin: var(--sp-3) auto 0;
+  background: var(--gold);
+  border: 0;
+}
+.rule--left { margin-left: 0; }
+
+.grid { display: grid; gap: var(--sp-4); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.text-center { text-align: center; }
+.text-gold   { color: var(--gold-deep); }
+
+/* ---------- 4. Header / Nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 251, 247, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+.nav { display: flex; gap: var(--sp-4); }
+.nav a {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  padding-block: var(--sp-1);
+  border-bottom: 1px solid transparent;
+}
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--gold);
+}
+
+/* ---------- 5. Buttons (เส้นบาง ไม่ฉูดฉาด) ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn:hover {
+  background: var(--ink);
+  color: var(--ivory);
+}
+.btn--solid {
+  background: var(--ink);
+  color: var(--ivory);
+}
+.btn--solid:hover {
+  background: var(--gold-deep);
+  border-color: var(--gold-deep);
+  color: var(--white);
+}
+.btn--gold {
+  border-color: var(--gold);
+  color: var(--gold-deep);
+}
+.btn--gold:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+.btn--sm { padding: 0.6rem 1.5rem; font-size: var(--fs-xs); }
+.btn--block { display: block; width: 100%; }
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  padding-block: var(--sp-7);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+  text-align: center;
+}
+.hero p { margin-inline: auto; font-size: var(--fs-md); }
+.hero .btn { margin-top: var(--sp-3); }
+
+/* ---------- 7. Mood — แตะสีเบาๆ เป็นจุดเล็กๆ ---------- */
+.mood-fresh     { --mood: var(--mood-fresh); }
+.mood-sweet     { --mood: var(--mood-sweet); }
+.mood-confident { --mood: var(--mood-confident); }
+.mood-romance   { --mood: var(--mood-romance); }
+
+/* จุดสีเล็กๆ (ใช้หน้าชื่อ mood, ไอคอน, ตัวกรอง) */
+.mood-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.6em;
+  border-radius: 50%;
+  background: var(--mood, var(--gold));
+  vertical-align: middle;
+}
+
+/* เส้นสั้นๆ ใต้หัวข้อ mood */
+.mood-rule {
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-top: var(--sp-2);
+  background: var(--mood, var(--gold));
+  border: 0;
+}
+
+/* ชื่อ mood แบบตัวเล็กมีจุดนำหน้า */
+.mood-label {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+}
+
+/* ---------- 8. Filter tabs ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2) var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+.filter {
+  padding: var(--sp-1) 0;
+  font: inherit;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.filter:hover { color: var(--ink); }
+.filter.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--gold);
+}
+
+/* ---------- 9. Product card ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5) var(--sp-4);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color .4s var(--ease);
+}
+.card:hover { border-color: var(--gold); }
+
+.card__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--sp-3);
+}
+.card__title {
+  margin: var(--sp-1) 0 0;
+  font-family: var(--font-serif-th);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  line-height: 1.5;
+}
+.card__meta {
+  margin: var(--sp-1) 0 0;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.card__desc {
+  margin: var(--sp-2) 0 var(--sp-3);
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--line);
+}
+.price {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  color: var(--gold-deep);
+  letter-spacing: 0.02em;
+}
+.price small {
+  margin-left: 0.25em;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  color: var(--ink-mute);
+}
+
+/* ---------- 10. Feature / Mood blocks (ไม่ทาพื้นหลังสด) ---------- */
+.feature {
+  padding: var(--sp-4) var(--sp-3);
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.feature .mood-dot { margin: 0 0 var(--sp-2); }
+.feature h3 { font-size: var(--fs-lg); }
+.feature p { margin-inline: auto; font-size: var(--fs-sm); }
+
+/* ---------- 11. Forms ---------- */
+label {
+  display: block;
+  margin-bottom: var(--sp-1);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+input, select, textarea {
+  width: 100%;
+  padding: 0.85rem 0;
+  font: inherit;
+  font-weight: 300;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  transition: border-color .3s var(--ease);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-bottom-color: var(--gold-deep);
+}
+::placeholder { color: var(--ink-mute); }
+.field { margin-bottom: var(--sp-4); }
+
+/* ---------- 12. Footer ---------- */
+.site-footer {
+  padding-block: var(--sp-5);
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.site-footer p {
+  margin-inline: auto;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+
+/* ---------- 13. Responsive ---------- */
+@media (max-width: 1024px) {
+  .product-grid, .grid--4 { grid-template-columns: repeat(3, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sp-5: 3rem;
+    --sp-6: 4.5rem;
+    --sp-7: 6rem;
+  }
+  .product-grid, .grid--4 { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4) var(--sp-2); }
+  .grid--2, .grid--3 { grid-template-columns: 1fr; }
+
+  .site-header__inner { min-height: 64px; }
+  .nav { gap: var(--sp-3); }
+
+  .card__body { padding: var(--sp-2); }
+  .card__desc { display: none; }           /* มือถือ: ซ่อนคำอธิบายเพื่อไม่ให้การ์ดแน่น */
+  .card__footer { flex-direction: column; align-items: stretch; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .container { padding-inline: var(--sp-2); }
+  .site-header__inner { flex-direction: column; justify-content: center; gap: 0.25rem; padding-block: 0.75rem; }
+  .brand { font-size: 1.25rem; }
+  .btn { padding: 0.85rem 1.75rem; }
+  .filters { gap: var(--sp-1) var(--sp-3); }
+}
+
+@media (max-width: 360px) {
+  .product-grid, .grid--4 { grid-template-columns: 1fr; }
+}
+
+/* ---------- 14. Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
